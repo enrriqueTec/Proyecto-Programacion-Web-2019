@@ -1,0 +1,37 @@
+#header img {
+    width: 40px;
+    width: 60px;
+    padding-top: 20px;
+}
+
+#header {
+    background: #072168 !important;
+}
+.title{
+    background:white; 
+    color: white;
+    font-size: 20px;
+}
+
+#main .carousel-item img {
+    max-height: 70vh;
+    object-fit: cover;
+    opacity: 0.7;
+}
+#carrusel .overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+}
+#footer {
+    background-color: #1039A8;
+}
+
+footer a,
+p {
+    color: lightgray;
+}

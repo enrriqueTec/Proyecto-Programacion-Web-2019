@@ -1,0 +1,28 @@
+.carousel-inner img {
+    width: 200%;
+    max-height: 460px;
+}
+
+
+#header img{
+    width: 40px;
+    width: 60px;
+}
+
+#header{
+    background: #072168 !important;
+}
+
+#main .carousel-item img{
+    max-height: 70vh;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+#footer{
+    background-color: #1039A8;
+}
+
+footer a,p{
+    color: lightgray;
+}
