@@ -72,7 +72,7 @@ $sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alu
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-danger glyphicon glyphicon-remove" onclick="preguntarSiNo('<?php echo $ver[0] ?>')">
+                        <button class="btn btn-danger glyphicon glyphicon-remove" onclick="preguntarSiNo('<?php echo $ver[0]?>');">
 
                         </button>
                     </td>

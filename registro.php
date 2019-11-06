@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php 
+  session_start();
+  require_once"menu.php";
+
+if($_SESSION["autenticado"]!=1){
+       header("Location: login.php");
+ }
+ 
+ ?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,11 +14,11 @@
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
-	<?php include "php/navbar.php"; ?>
+	
 <div class="container">
 <div class="row">
 <div class="col-md-6">
-		<h2>Registro</h2>
+		<h2>Registro de nuevos usuarios</h2>
 
 		<form role="form" name="registro" action="php/registro.php" method="post">
 		  <div class="form-group">
@@ -34,12 +42,15 @@
 		    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar Contraseña">
 		  </div>
 
-		  <button type="submit" class="btn btn-default">Registrar</button>
+		  <button type="submit" class="btn btn-success">Registrar</button>
 		</form>
 		</div>
 		</div>
 		</div>
-
+        <script src="librerias/jquery-3.2.1.min.js"></script>
+  	<script src="librerias/bootstrap/js/bootstrap.js"></script>
+	<script src="librerias/alertifyjs/alertify.js"></script>
+  <script src="librerias/select2/js/select2.js"></script>
 		<script src="js/valida_registro.js"></script>
 	</body>
 </html>

@@ -1,26 +1,26 @@
 <?php 
   session_start();
-
-  unset($_SESSION['consulta']);
-  require_once"menu.php";
   
+  require_once"menu.php";
+ 
+if($_SESSION["autenticado"]!=1){
+     header("Location: login.php");
 
+ }
+ 
  ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Tabla dinamica</title>
+	
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
+	
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css">
   <link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.css">
 
-
-
-
-	
 </head>
 <body>
 
@@ -65,15 +65,7 @@
               <option>Contador público</option>
           </select>
           <!--<input type="selected" name="" id="txt_Carrera" class="form-control input-sm" > -->
-          <label for="">Estado:</label>
-            <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
-                            <label class="custom-control-label" for="customControlValidation2">Inscrito</label>
-                        </div>
-                        <div class="custom-control custom-radio mb-3">
-                            <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
-                            <label class="custom-control-label" for="customControlValidation3">No inscrito</label>
-                            </div>
+          
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success" id="guardarnuevo">
@@ -138,8 +130,7 @@
 
 
 <script src="librerias/jquery-3.2.1.min.js"></script>
-  <script src="js/funciones.js"></script>
-	<script src="librerias/bootstrap/js/bootstrap.js"></script>
+  	<script src="librerias/bootstrap/js/bootstrap.js"></script>
 	<script src="librerias/alertifyjs/alertify.js"></script>
   <script src="librerias/select2/js/select2.js"></script>
 </body>

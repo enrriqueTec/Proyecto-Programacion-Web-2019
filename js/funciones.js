@@ -1,40 +1,9 @@
 
-function agregardatosMateria(txt_clave_tutor,txt_Nombre_tutor,txt_primerAp_tutor,txt_segundoAp_tutor,txt_gradoAcademico,txt_numero_Tutor){
-cadena="txt_clave_tutor=" + txt_clave_tutor + 
-			"&txt_Nombre_tutor=" + txt_Nombre_tutor +
-            "&txt_primerAp_tutor=" + txt_primerAp_tutor +
-            "&txt_segundoAp_tutor=" + txt_segundoAp_tutor +
-            "&txt_gradoAcademico=" + txt_gradoAcademico +
-			"&txt_numero_Tutor=" + txt_numero_Tutor;
 
-	$.ajax({
-		type:"POST",
-		url:"php/agregarDatosMateria.php",
-		data:cadena,
-		success:function(r){
-			if(r==1){
-				$('#tablamaterias').load('componentes/tablamaterias.php');
-				 $('#buscadorMaterias').load('componentes/buscadorMaterias.php');
-				alertify.success("EL TUTOR SE HA AGREGADO CON EXITO :)");
-			}else{
-				alertify.error("Fallo el servNumeroControlor :(");
-			}
-		}
-	});
-}
 //FUNCION UTILIZADA PAAR MOSTRAR LOS DATOS DEL ALUMNO AGRGADO Y MANDAR UN MENSAJE!!
 function agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apellido_Materno,txt_Edad,txt_Semestre,txt_Carrera){
 
-	nc="txt_Num_Control";
-    n="txt_Nombre";
-    pa="txt_Apellido_Paterno";
-    sa="txt_Apellido_Materno";
-    ed="txt_Edad";
-    se="txt_Semestre";
-    ca="txt_Carrera";
-   
-   
-   
+	   
     cadena="txt_Num_Control=" + txt_Num_Control + 
 			"&txt_Nombre=" + txt_Nombre +
 			"&txt_Apellido_Paterno=" + txt_Apellido_Paterno +
@@ -74,6 +43,7 @@ function agregaform(datos){
 	$('#txt_Carrera_Modificaciones').val(d[6]);
 	
 }
+
 //EN ESTA FUNCION SE UTLIZA PARA MODIFICAR LOS DATOS DE LOS ALUMANOS!!!
 function actualizaDatos(){
 
@@ -110,6 +80,7 @@ function actualizaDatos(){
 	});
 
 }
+
 //ESTA FUNCION SE UTILIZA PARA MANDAR UN MENSAJE Y PREGUNTAR SI REALMENTE SE QUIERE ELIMINAR AL ALUMNO!!
 function preguntarSiNo(NumeroControl){
 	alertify.confirm('Eliminar Datos', '¿ESTAS SEGURO QUE DESEAS ELIMINAR A ESTE ALUMNO?', 

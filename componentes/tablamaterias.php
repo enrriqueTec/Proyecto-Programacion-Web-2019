@@ -1,4 +1,3 @@
-
 <?php 
 	session_start();
 	
@@ -8,33 +7,37 @@
 
  ?>
 <div class="row">
-	<div class="col-sm-12">
-	<center><h2>Materias</h2></center>
-		<table class="table table-hover table-condensed table-bordered">
-		<caption>
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo">
-				Agregar materias 
-				<span class="glyphicon glyphicon-plus"></span>
-			</button>
-		</caption>
-		
-		
-			<tr>
-				<td>Clave:</td>
-				<td>Nombre:</td>
-				<td>Primer apellido:</td>
-				<td>Segundo apellido:</td>
-				<td>Grado academico:</td>
-				<td>Número telefónico:</td>
-				<td>Editar</td>
-				<td>Eliminar</td>
-			</tr>
+    <div class="col-sm-12">
+        <center>
+            <h2>Tutores</h2>
+        </center>
+        <caption>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevoTutor">
+                Agregar Tutores
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </caption>
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed table-bordered table-ligth table-striped-dark">
 
-			<?php 
+                <tr class="bg-primary">
+                    <td>Clave</td>
+                    <td>Nombre</td>
+                    <td>Apellido Paterno</td>
+                    <td>Apellido Materno</td>
+                    <td>Grado Académico</td>
+                    <td>Teléfono</td>
+                    
+                   
+                    <td>Editar</td>
+                    <td>Eliminar</td>
+                </tr>
+
+                <?php 
 if(isset($_SESSION['consulta'])){
 					if($_SESSION['consulta'] > 0){
 						$idp=$_SESSION['consulta'];
-$sql="SELECT * from tutores where clave='$idp'";
+$sql="SELECT * from tutores where clave_tutor='$idp'";
 }else{
 						$sql="SELECT * from tutores";
 					}
@@ -42,40 +45,42 @@ $sql="SELECT * from tutores where clave='$idp'";
 					$sql="SELECT * from tutores";
 				}
 					
-				$res=mysqli_query($conexion,$sql);
-				while($tut=mysqli_fetch_row($res)){ 
+				$result=mysqli_query($conexion,$sql);
+				while($ver=mysqli_fetch_row($result)){ 
 
-					$datos=$tut[0]."||".
-						   $tut[1]."||".
-                           $tut[2]."||".
-                           $tut[3]."||".
-                           $tut[4]."||".
-						   $tut[5]."||";
+					$datos=$ver[0]."||".
+						   $ver[1]."||".
+						   $ver[2]."||".
+						   $ver[3]."||".
+						   $ver[4]."||".
+						   $ver[5];
 			 ?>
 
-			<tr>
-			<td><?php echo $tut[0] ?></td>
-				<td><?php echo $tut[1] ?></td>
-				<td><?php echo $tut[2] ?></td>
-				<td><?php echo $tut[3] ?></td>
-				<td><?php echo $tut[4] ?></td>
-				<td><?php echo $tut[5] ?></td>
-				
-				<td>
-					<button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
-						
-					</button>
-				</td>
-				<td>
-					<button class="btn btn-danger glyphicon glyphicon-remove" 
-					onclick="preguntarSiNo('<?php echo $tut[0] ?>')">
-						
-					</button>
-				</td>
-			</tr>
-			<?php 
+                <tr>
+                    <td><?php echo $ver[0] ?></td>
+                    <td><?php echo $ver[1] ?></td>
+                    <td><?php echo $ver[2] ?></td>
+                    <td><?php echo $ver[3] ?></td>
+                    <td><?php echo $ver[4] ?></td>
+                    <td><?php echo $ver[5] ?></td>
+                    
+                   
+                    <td>
+                        <button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicionTutores" onclick="agregaformTutores('<?php echo $datos ?>')">
+
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger glyphicon glyphicon-remove" onclick="preguntarSiNoTutor('<?php echo $ver[0] ?>')">
+
+                        </button>
+                    </td>
+                </tr>
+                <?php 
 		}
 			 ?>
-		</table>
-	</div>
+            </table>
+        </div>
+
+    </div>
 </div>

@@ -1,7 +1,8 @@
 <?php 
 	require_once "../php/conexion.php";
 	$conexion=conexion();
-	$sql="SELECT clave_tutor, nombreTutor, primerApTutor,segundoApTutor, gradoAcademico,telefono from tutores";
+
+	$sql="SELECT * from tutores";
 				$result=mysqli_query($conexion,$sql);
 
  ?>
@@ -10,7 +11,7 @@
 	<div class="col-sm-8"></div>
 	<div class="col-sm-4">
 		<label>CONSULTAR</label>
-		<select id="buscadormateria" class="form-control input-sm">
+		<select id="buscadorvivo" class="form-control input-sm">
 			<option value="0">Mostrar Todos</option>
 			<?php
 				while($ver=mysqli_fetch_row($result)): 
@@ -28,12 +29,12 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#buscadormateria').select2();
+			$('#buscadorvivo').select2();
 
-			$('#buscadormateria').change(function(){
+			$('#buscadorvivo').change(function(){
 				$.ajax({
 					type:"post",
-					data:'valor=' + $('#buscadormateria').val(),
+					data:'valor=' + $('#buscadorvivo').val(),
 					url:'php/crearsession.php',
 					success:function(r){
 						$('#tabla').load('componentes/tablamaterias.php');
