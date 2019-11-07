@@ -20,7 +20,30 @@ if($_SESSION["autenticado"]!=1){
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css">
   <link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.css">
 
-
+<script>
+    function sololetras(e) {
+        key=e.keyCode || e.which;
+ 
+        teclado=String.fromCharCode(key).toLowerCase();
+ 
+        letras="qwertyuiopasdfghjklñzxcvbnm ";
+ 
+        especiales="8-37-38-46-164";
+ 
+        teclado_especial=false;
+ 
+        for(var i in especiales){
+            if(key==especiales[i]){
+                teclado_especial=true;
+                break;
+            }
+        }
+ 
+        if(letras.indexOf(teclado)==-1 && !teclado_especial){
+            return false;
+        }
+    }
+    </script>
 	
 </head>
 <body>
@@ -48,11 +71,11 @@ if($_SESSION["autenticado"]!=1){
         <label>Clave tutor:</label>
           <input type="text" name="" id="txt_Clave_Tutor" class="form-control input-sm" required="true" >
         	<label>Nombre:</label>
-        	<input type="text" name="" id="txt_Nombre_Tutor" class="form-control input-sm" required="true" >
+        	<input type="text" name="" id="txt_Nombre_Tutor" class="form-control input-sm" required="true"onkeypress="return sololetras(event)" onpaste="return false" >
         	<label>Apellido paterno:</label>
-        	<input type="text" name="" id="txt_Apellido_Paterno_Tutor" class="form-control input-sm" required="true" > 
+        	<input type="text" name="" id="txt_Apellido_Paterno_Tutor" class="form-control input-sm" required="true" onkeypress="return sololetras(event)" onpaste="return false"> 
         	<label>Apellido materno:</label>
-        	<input type="text" name="" id="txt_Apellido_Materno_Tutor" class="form-control input-sm " required="true" >
+        	<input type="text" name="" id="txt_Apellido_Materno_Tutor" class="form-control input-sm " required="true" onkeypress="return sololetras(event)" onpaste="return false">
         	<label>Grado academico:</label>
         	<input type="text" width="20px" name="" id="txt_Grado_Tutor" class="form-control input-sm" required="true" >
           <label>telefono:</label>
@@ -91,13 +114,13 @@ if($_SESSION["autenticado"]!=1){
       		<input type="text" name="" id="txt_Clave_Modificaciones" class="form-control input-sm" 
           disabled="true" required="true">
           <label>Nombre:</label>
-          <input type="text" name="" id="txt_Nombre_Modificaciones" class="form-control input-sm" required="true">
+          <input type="text" name="" id="txt_Nombre_Modificaciones" class="form-control input-sm" required="true" onkeypress="return sololetras(event)" onpaste="return false">
           <label>Apellido Paterno:</label>
-          <input type="text" name="" id="txt_Apellido_Paterno_Modificaciones" class="form-control input-sm" required="true"> 
+          <input type="text" name="" id="txt_Apellido_Paterno_Modificaciones" class="form-control input-sm" required="true" onkeypress="return sololetras(event)" onpaste="return false"> 
           <label>Apellido Materno:</label>
-          <input type="text" name="" id="txt_Apellido_Materno_Modificaciones" class="form-control input-sm" required="true">
+          <input type="text" name="" id="txt_Apellido_Materno_Modificaciones" class="form-control input-sm" required="true" onkeypress="return sololetras(event)" onpaste="return false">
           <label>Grado académico:</label>
-          <input type="text" name="" id="txt_Grado_Modificaciones" class="form-control input-sm" required="true">
+          <input type="text" name="" id="txt_Grado_Modificaciones" class="form-control input-sm" required="true" >
           <label>Teléfono:</label>
           <input type="text" name="" id="txt_Telefono_Modificaciones" class="form-control input-sm" required="true">
           
