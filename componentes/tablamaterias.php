@@ -34,10 +34,11 @@
                 </tr>
 
                 <?php 
-if(isset($_SESSION['consulta'])){
+           if(isset($_SESSION['consulta'])){
 					if($_SESSION['consulta'] > 0){
 						$idp=$_SESSION['consulta'];
-$sql="SELECT * from tutores where clave_tutor='$idp'";
+                        
+                  $sql="SELECT * from tutores where clave_tutor='$idp'";
 }else{
 						$sql="SELECT * from tutores";
 					}
@@ -71,7 +72,7 @@ $sql="SELECT * from tutores where clave_tutor='$idp'";
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-danger glyphicon glyphicon-remove" onclick="preguntarSiNoTutor('<?php echo $ver[0] ?>')">
+                        <button class="btn btn-danger glyphicon glyphicon-remove" onclick="preguntarSiNoTutor('<?php echo $ver[0]  ?>')">
 
                         </button>
                     </td>

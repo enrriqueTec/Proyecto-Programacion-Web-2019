@@ -1,5 +1,9 @@
 <?php
 session_start();
+if($_SESSION["autenticado"]!=1){
+     header("Location: login.php");
+
+ }
 if(!empty($_POST)){
   
 	if(isset($_POST["username"]) &&isset($_POST["password"])){
@@ -23,7 +27,7 @@ if(!empty($_POST)){
 			}else{
 				session_start();
 				$_SESSION["autenticado"]=1;
-				print "<script>window.location='../home.php';</script>";				
+				print "<script>window.location='../Altas.php';</script>";				
 			}
 		}
 	}

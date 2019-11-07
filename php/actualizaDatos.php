@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if($_SESSION["autenticado"]!=1){
+     header("Location: login.php");
+
+ }
 	require_once "conexion.php";
 	$conexion=conexion();
 	$nc=$_POST['txt_Num_Control_Modificaciones'];

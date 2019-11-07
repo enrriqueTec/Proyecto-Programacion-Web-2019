@@ -1,4 +1,9 @@
 <?php
+session_start();
+if($_SESSION["autenticado"]!=1){
+     header("Location: login.php");
+
+ }
 
 if(!empty($_POST)){
 	if(isset($_POST["username"]) &&isset($_POST["fullname"]) &&isset($_POST["email"]) &&isset($_POST["password"]) &&isset($_POST["confirm_password"])){

@@ -1,5 +1,9 @@
 <?php 
+session_start();
+if($_SESSION["autenticado"]!=1){
+     header("Location: login.php");
 
+ }
 	include"conexion.php";
 	$conexion=conexion();
 	$nc=htmlspecialchars($_POST['txt_Num_Control']);

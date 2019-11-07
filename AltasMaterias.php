@@ -27,8 +27,8 @@ if($_SESSION["autenticado"]!=1){
 
 
 	<div class="container">
-    <div id="buscador"></div>
-		<div id="tabla"></div>
+    <div id="buscadorMaterias"></div>
+		<div id="tablamaterias"></div>
 	</div>
 
 	<!-- Modal para registros nuevos -->
@@ -56,16 +56,16 @@ if($_SESSION["autenticado"]!=1){
         	<label>Grado academico:</label>
         	<input type="text" width="20px" name="" id="txt_Grado_Tutor" class="form-control input-sm" required="true" >
           <label>telefono:</label>
-          <input type="number" name="" id="txt_Telefono_Tutor" class="form-control input-sm" required="true" >
+          <input type="text" name="" id="txt_Telefono_Tutor" class="form-control input-sm" required="true" >
           
           <!--<input type="selected" name="" id="txt_Carrera" class="form-control input-sm" > -->
           
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="guardarnuevotutor">
+        <button type="submit" class="btn btn-success" id="guardarnuevotutor">
         Agregar
         </button>
-         <button type="button" class="btn btn-danger" id="cancelar">
+         <button type="submit" class="btn btn-danger" id="cancelar">
         Cancelar
         </button>
        </div>
@@ -99,18 +99,18 @@ if($_SESSION["autenticado"]!=1){
           <label>Grado académico:</label>
           <input type="text" name="" id="txt_Grado_Modificaciones" class="form-control input-sm" required="true">
           <label>Teléfono:</label>
-          <input type="number" name="" id="txt_Telefono_Modificaciones" class="form-control input-sm" required="true">
+          <input type="text" name="" id="txt_Telefono_Modificaciones" class="form-control input-sm" required="true">
           
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="actualizadatosTutor" data-dismiss="modal">Actualizar</button><br>
+        <button type="submit" class="btn btn-success" id="actualizadatosTutor" data-dismiss="submit">Actualizar</button><br>
         <button type="button" class="btn btn-danger" id="Cancelar" data-dismiss="modal">Cancelar</button>
         
       </div>
     </div>
   </div>
   
-  <script type="text/javascript"src="js/funcionesTutores.js"></script>
+  <script type="text/javascript" src="js/funcionesTutores.js"></script>
 </div>
   
 </form>
@@ -127,8 +127,8 @@ if($_SESSION["autenticado"]!=1){
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#tabla').load('componentes/tablamaterias.php');
-    $('#buscador').load('componentes/buscadorMaterias.php');
+		$('#tablamaterias').load('componentes/tablamaterias.php');
+    $('#buscadorMaterias').load('componentes/buscadorMaterias.php');
 	});
 </script>
 
@@ -137,12 +137,17 @@ if($_SESSION["autenticado"]!=1){
 
         $('#guardarnuevotutor').click(function(){
           txt_Clave_Tutor=$('#txt_Clave_Tutor').val();
+            
           txt_Nombre_Tutor=$('#txt_Nombre_Tutor').val();
+            
           txt_Apellido_Paterno_Tutor=$('#txt_Apellido_Paterno_Tutor').val();
+            
           txt_Apellido_Materno_Tutor=$('#txt_Apellido_Materno_Tutor').val();
+            
           txt_Grado_Tutor=$('#txt_Grado_Tutor').val();
+            
           txt_Telefono_Tutor=$('#txt_Telefono_Tutor').val();
-          
+          alertify.error(txt_Telefono_Tutor);
             if(txt_Clave_Tutor.trim()==""){
                alertify.error("Debes ingresar una clave válida :(");
             
@@ -156,8 +161,7 @@ if($_SESSION["autenticado"]!=1){
              alertify.error("Debes ingresar un Apellido Materno :(");
             }else if(txt_Telefono_Tutor.trim()==""){
              alertify.error("Debes ingresar un Apellido Materno :(");
-            }else{
-                agregardatosMateria(txt_Clave_Tutor,txt_Nombre_Tutor,txt_Apellido_Paterno_Tutor,txt_Apellido_Materno_Tutor,txt_Grado_Tutor,txt_Telefono_Tutor); 
+            }else{     agregardatosMateria(txt_Clave_Tutor,txt_Nombre_Tutor,txt_Apellido_Paterno_Tutor,txt_Apellido_Materno_Tutor,txt_Grado_Tutor,txt_Telefono_Tutor); 
             }
             
            

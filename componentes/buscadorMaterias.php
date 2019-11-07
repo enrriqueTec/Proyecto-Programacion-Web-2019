@@ -37,7 +37,7 @@
 					data:'valor=' + $('#buscadorvivo').val(),
 					url:'php/crearsession.php',
 					success:function(r){
-						$('#tabla').load('componentes/tablamaterias.php');
+						$('#tablamaterias').load('componentes/tablamaterias.php');
 					}
 				});
 			});

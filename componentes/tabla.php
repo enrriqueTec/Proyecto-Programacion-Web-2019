@@ -34,10 +34,10 @@
                 </tr>
 
                 <?php 
-if(isset($_SESSION['consulta'])){
+              if(isset($_SESSION['consulta'])){
 					if($_SESSION['consulta'] > 0){
 						$idp=$_SESSION['consulta'];
-$sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos where numControl='$idp'";
+                        $sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos where numControl='$idp'";
 }else{
 						$sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos";
 					}

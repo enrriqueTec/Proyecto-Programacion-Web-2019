@@ -115,9 +115,8 @@ if($_SESSION["autenticado"]!=1){
           </select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="actualizadatos" data-dismiss="modal">Actualizar</button><br>
-        <button type="button" class="btn btn-danger" id="Cancelar" data-dismiss="modal">Cancelar</button>
-        
+        <button type="submit" class="btn btn-success" id="actualizadatos" data-dismiss="modal">Actualizar</button><br>
+                
       </div>
     </div>
   </div>

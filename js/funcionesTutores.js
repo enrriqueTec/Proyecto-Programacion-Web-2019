@@ -13,25 +13,27 @@ function agregaformTutores(datos){
 	
 	
 }
-function agregardatosMateria(txt_Clave_Tutor,txt_Nombre_Tutor,txt_Apellido_Paterno_Tutor,txt_Apellido_Materno_Tutor,txt_Grado_Tutor,txt_Numero_Tutor){
+function agregardatosMateria(txt_Clave_Tutor,txt_Nombre_Tutor,txt_Apellido_Paterno_Tutor,txt_Apellido_Materno_Tutor,txt_Grado_Tutor,txt_Telefono_Tutor){
 cadena="txt_Clave_Tutor=" + txt_Clave_Tutor + 
 			"&txt_Nombre_Tutor=" + txt_Nombre_Tutor +
             "&txt_Apellido_Paterno_Tutor=" + txt_Apellido_Paterno_Tutor +
             "&txt_Apellido_Materno_Tutor=" + txt_Apellido_Materno_Tutor +
             "&txt_Grado_Tutor=" + txt_Grado_Tutor +
-			"&txt_Numero_Tutor=" + txt_Numero_Tutor;
+			"&txt_Telefono_Tutor=" + txt_Telefono_Tutor;
 
 	$.ajax({
 		type:"POST",
 		url:"php/agregarDatosMateria.php",
 		data:cadena,
 		success:function(r){
-			if(r==1){
-				$('#tabla').load('componentes/tablamaterias.php');
-				 $('#buscador').load('componentes/buscadorMaterias.php');
-				alertify.success("EL TUTOR SE HA AGREGADO CON EXITO :)");
+            if(r==1){
+				$('#tablamaterias').load('componentes/tablamaterias.php');
+				 $('#buscadorMaterias').load('componentes/buscadorMaterias.php');
+				alertify.success("EL TUTOR SE HA AGREGADO CON EXITO");
+                
 			}else{
 				alertify.error("Fallo Agregar tutor");
+               
 			}
 		}
 	});
@@ -43,8 +45,8 @@ function actualizaDatosMateria(){
 	txt_Nombre_Modificaciones=$('#txt_Nombre_Modificaciones').val();
 	txt_Apellido_Paterno_Modificaciones=$('#txt_Apellido_Paterno_Modificaciones').val();
 	txt_Apellido_Materno_Modificaciones=$('#txt_Apellido_Materno_Modificaciones').val();
-	txt_Edad_Modificaciones=$('#txt_Grado_Modificaciones').val();
-	txt_Semestre_Modificaciones=$('#txt_Telefono_Modificaciones').val();
+	txt_Grado_Modificaciones=$('#txt_Grado_Modificaciones').val();
+	txt_Telefono_Modificaciones=$('#txt_Telefono_Modificaciones').val();
 	
 
 	cadena= "txt_Clave_Modificaciones=" + txt_Clave_Modificaciones +
@@ -58,9 +60,9 @@ function actualizaDatosMateria(){
 		type:"POST",
 		url:"php/actualizaDatosMateria.php",
 		data:cadena,
-		success:function(r)
-            if(r==1){
-				$('#tabla').load('componentes/tablamaterias.php');
+		success:function(R){
+            if(R==1){
+				$('#tablamaterias').load('componentes/tablamaterias.php');
 				alertify.success("EL TUTOR SE HA ACTUALIZADO CON EXITO :)");
 			}else{
 				alertify.error("FALLÓ LA ACTUALIZACIÓN :(");
@@ -69,25 +71,24 @@ function actualizaDatosMateria(){
 	});
 
 }
-function preguntarSiNoTutor(clave){
+function preguntarSiNoTutor(clave_tutor){
 	alertify.confirm('Eliminar Datos', '¿ESTAS SEGURO QUE DESEAS ELIMINAR A ESTE TUTOR?', 
-					function(){ eliminarDatosTutor(clave) }
+					function(){ eliminarDatosTutor(clave_tutor) }
                 , function(){ alertify.error('OPERACIÓN CANCELADA')});
 }
 //ESTA FUNCION ES UTILIZADA PARA ELIMINAR ALGUN TUTOR DE LA TABLA 
-function eliminarDatosTutor(clave){
-
-	cadena="clave_tutor=" + clave;
-
-		$.ajax({
+function eliminarDatosTutor(clave_tutor){
+cadena="clave_tutor=" + clave_tutor;
+	$.ajax({
 			type:"POST",
 			url:"php/eliminarDatosTutores.php",
 			data:cadena,
 			success:function(r){
 				if(r==1){
-					$('#tabla').load('componentes/tablamaterias.php');
-					alertify.success("EL TUTOR SE HA ELIMINADO CON EXITO!");
+					$('#tablamaterias').load('componentes/tablamaterias.php');
+					alertify.success("EL ALUMNO SE HA ELIMINADO CON EXITO!");
 				}else{
+                    alertify.success(r);
 					alertify.error("FALLÓ LA ELIMINACIÓN :(");
 				}
 			}

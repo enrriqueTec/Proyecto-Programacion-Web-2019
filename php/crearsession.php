@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	
 
 	$idper=$_POST['valor'];
 
