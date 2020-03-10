@@ -1,20 +1,13 @@
 <?php
 
+
+function conexion(){
 $host="localhost";
 $user="root";
 $password="";
-$db="bd_control_trayectoria";
-$con = new mysqli($host,$user,$password,$db);
+$db="tutorias";
 
-
-
-function conexion(){
-			$servidor="localhost";
-			$usuario="root";
-			$password="";
-			$bd="bd_control_trayectoria";
-
-			$conexion=mysqli_connect($servidor,$usuario,$password,$bd);
+			$conexion= new PDO('mysql:host='.$host.'; dbname='.$db, $user, $password);
 
 			return $conexion;
 		}

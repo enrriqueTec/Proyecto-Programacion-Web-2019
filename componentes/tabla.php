@@ -28,7 +28,7 @@
                     <td>Edad</td>
                     <td>Semestre</td>
                     <td>Carrera</td>
-                   
+                    <td>Tutor</td>
                     <td>Editar</td>
                     <td>Eliminar</td>
                 </tr>
@@ -36,17 +36,24 @@
                 <?php 
               if(isset($_SESSION['consulta'])){
 					if($_SESSION['consulta'] > 0){
+
 						$idp=$_SESSION['consulta'];
-                        $sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos where numControl='$idp'";
-}else{
-						$sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos";
+                        $stm=$conexion->prepare("SELECT * from alumnos where numControl=?");
+                        $stm->bindValue(1,$idp);
+                        
+                    }else{
+						$sql="SELECT * from alumnos";
+                         $stm=$conexion->prepare($sql);
+                       
 					}
-				}else{
-					$sql="SELECT numControl,Nombre,primerAp,segundoAp,edad,semestre,carrera from alumnos";
+				    }else{
+					$sql="SELECT * from alumnos";
+                     $stm=$conexion->prepare($sql);
+                        
 				}
-					
-				$result=mysqli_query($conexion,$sql);
-				while($ver=mysqli_fetch_row($result)){ 
+					$result=$conexion->query($sql);
+                    $stm->execute();
+				while ($ver=$stm->fetch()){ 
 
 					$datos=$ver[0]."||".
 						   $ver[1]."||".
@@ -54,7 +61,8 @@
 						   $ver[3]."||".
 						   $ver[4]."||".
 						   $ver[5]."||".
-                           $ver[6];
+                           $ver[6]."||".
+                           $ver[7];
 			 ?>
 
                 <tr>
@@ -65,6 +73,7 @@
                     <td><?php echo $ver[4] ?></td>
                     <td><?php echo $ver[5] ?></td>
                     <td><?php echo $ver[6] ?></td>
+                    <td><?php echo $ver[7] ?></td>
                    
                     <td>
                         <button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">

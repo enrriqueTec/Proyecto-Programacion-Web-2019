@@ -34,27 +34,33 @@
                 </tr>
 
                 <?php 
-           if(isset($_SESSION['consulta'])){
+                if(isset($_SESSION['consulta'])){
 					if($_SESSION['consulta'] > 0){
 						$idp=$_SESSION['consulta'];
                         
-                  $sql="SELECT * from tutores where clave_tutor='$idp'";
-}else{
-						$sql="SELECT * from tutores";
+                  $sql="SELECT * from tutores where clave_tutor=?";
+                  $stm=$conexion->prepare($sql);
+                  $stm->bindValue(1,$idp);
+                }else{
+					 $sql="SELECT * from tutores";
+                  $stm=$conexion->prepare($sql);
 					}
 				}else{
-					$sql="SELECT * from tutores";
+					 $sql="SELECT * from tutores";
+                  $stm=$conexion->prepare($sql);
 				}
 					
-				$result=mysqli_query($conexion,$sql);
-				while($ver=mysqli_fetch_row($result)){ 
+				$result=$conexion->query($sql);
+                    $stm->execute();
+                while ($ver=$stm->fetch()){ 
 
-					$datos=$ver[0]."||".
-						   $ver[1]."||".
-						   $ver[2]."||".
-						   $ver[3]."||".
-						   $ver[4]."||".
-						   $ver[5];
+                    $datos=$ver[0]."||".
+                           $ver[1]."||".
+                           $ver[2]."||".
+                           $ver[3]."||".
+                           $ver[4]."||".
+                          
+                           $ver[5];
 			 ?>
 
                 <tr>
@@ -63,7 +69,8 @@
                     <td><?php echo $ver[2] ?></td>
                     <td><?php echo $ver[3] ?></td>
                     <td><?php echo $ver[4] ?></td>
-                    <td><?php echo $ver[5] ?></td>
+                    <td><?php echo $ver[5] ?></td>  
+                   
                     
                    
                     <td>

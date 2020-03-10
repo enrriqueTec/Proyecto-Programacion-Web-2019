@@ -2,12 +2,16 @@
   session_start();
   
   require_once"menu.php";
- 
+  require_once "php/conexion.php";
+  $conexion=conexion();
+  $sql="SELECT * from tutores";
+  $result=$conexion->query($sql);
+  $result2=$conexion->query($sql);
 if($_SESSION["autenticado"]!=1){
      header("Location: login.php");
 
  }
- 
+
  ?>
 
 <!DOCTYPE html>
@@ -90,16 +94,32 @@ if($_SESSION["autenticado"]!=1){
               <option>Contador público</option>
           </select>
           <!--<input type="selected" name="" id="txt_Carrera" class="form-control input-sm" > -->
+          <label>Tutor:</label>
+          <select class="custom-select" id="txt_tutor" name="txt_tutor">
           
+         <?php
+        foreach ($result as $ver):
+        
+         
+         ?>
+        <option value="<?php echo $ver[0] ?>">
+          <?php echo $ver[0] ?>
+        </option>
+
+      <?php endforeach; ?>
+          </select>
+
       </div>
-      <div class="modal-footer">
+         <div class="modal-footer">
         <button type="submit" class="btn btn-success" id="guardarnuevo">
         Agregar
         </button>
          <button type="submit" class="btn btn-danger" id="cancelar">
         Cancelar
         </button>
-       </div>
+       </div> 
+      </div>
+      
      </form>
       </div>
     </div>
@@ -137,6 +157,20 @@ if($_SESSION["autenticado"]!=1){
               <option>Ingeniería en Mecatrónica</option>
               <option>Licenciatura en administración</option>
               <option>Contador público</option>
+          </select>
+          <label>Tutor:</label>
+          <select class="custom-select" id="txt_tutor_Modificaciones" name="txt_tutor_Modificaciones">
+            
+         <?php
+        foreach ($result2 as $ver2):
+        
+         
+         ?>
+        <option value="<?php echo $ver[0] ?>">
+          <?php echo $ver2[0] ?>
+        </option>
+
+      <?php endforeach; ?>
           </select>
       </div>
       <div class="modal-footer">
@@ -178,7 +212,8 @@ if($_SESSION["autenticado"]!=1){
           txt_Edad=$('#txt_Edad').val();
           txt_Semestre=$('#txt_Semestre').val();
           txt_Carrera=$('#txt_Carrera').val();
-          
+          txt_tutor=$('#txt_tutor').val();
+          alertify.error(txt_tutor);
             if(txt_Num_Control.trim()==""){
                alertify.error("Debes ingresar un numero de control válido :(");
             
@@ -190,7 +225,7 @@ if($_SESSION["autenticado"]!=1){
              alertify.error("Debes ingresar un Apellido Materno :(");
             }
             else{
-                agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apellido_Materno,txt_Edad,txt_Semestre,txt_Carrera); 
+                agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apellido_Materno,txt_Edad,txt_Semestre,txt_Carrera,txt_tutor); 
             }
             
            
@@ -201,13 +236,15 @@ if($_SESSION["autenticado"]!=1){
 
         $('#actualizadatos').click(function(){
             
-            txt_Num_Control=$('#txt_Num_Control').val();
-          txt_Nombre=$('#txt_Nombre').val();
-          txt_Apellido_Paterno=$('#txt_Apellido_Paterno').val();
-          txt_Apellido_Materno=$('#txt_Apellido_Materno').val();
-          txt_Edad=$('#txt_Edad').val();
-          txt_Semestre=$('#txt_Semestre').val();
-          txt_Carrera=$('#txt_Carrera').val();
+          txt_Num_Control=$('#txt_Num_Control_Modificaciones').val();
+          txt_Nombre=$('#txt_Nombre_Modificaciones').val();
+          txt_Apellido_Paterno=$('#txt_Apellido_Paterno_Modificaciones').val();
+          txt_Apellido_Materno=$('#txt_Apellido_Materno_Modificaciones').val();
+          txt_Edad=$('#txt_Edad_Modificaciones').val();
+          txt_Semestre=$('#txt_Semestre_Modificaciones').val();
+          txt_Carrera=$('#txt_Carrera_Modificaciones').val();
+          txt_tutor=$('#txt_tutor_Modificaciones').val();
+          
           
             if(txt_Num_Control.trim()==""){
                alertify.error("Debes ingresar un numero de control válido :(");

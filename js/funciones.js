@@ -1,7 +1,7 @@
 
 
 //FUNCION UTILIZADA PAAR MOSTRAR LOS DATOS DEL ALUMNO AGRGADO Y MANDAR UN MENSAJE!!
-function agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apellido_Materno,txt_Edad,txt_Semestre,txt_Carrera){
+function agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apellido_Materno,txt_Edad,txt_Semestre,txt_Carrera,txt_tutor){
 
 	   
     cadena="txt_Num_Control=" + txt_Num_Control + 
@@ -10,7 +10,8 @@ function agregardatos(txt_Num_Control,txt_Nombre,txt_Apellido_Paterno,txt_Apelli
 			"&txt_Apellido_Materno=" + txt_Apellido_Materno +
 			"&txt_Edad=" + txt_Edad +
 			"&txt_Semestre=" + txt_Semestre +
-			"&txt_Carrera=" + txt_Carrera;
+			"&txt_Carrera=" + txt_Carrera+
+			"&txt_tutor="+txt_tutor;
 
 	$.ajax({
 		type:"POST",
@@ -41,6 +42,7 @@ function agregaform(datos){
 	$('#txt_Edad_Modificaciones').val(d[4]);
 	$('#txt_Semestre_Modificaciones').val(d[5]);
 	$('#txt_Carrera_Modificaciones').val(d[6]);
+	$('#txt_tutor_Modificaciones').val(d[7]);
 	
 }
 
@@ -55,6 +57,8 @@ function actualizaDatos(){
 	txt_Edad_Modificaciones=$('#txt_Edad_Modificaciones').val();
 	txt_Semestre_Modificaciones=$('#txt_Semestre_Modificaciones').val();
 	txt_Carrera_Modificaciones=$('#txt_Carrera_Modificaciones').val();
+	txt_tutor_Modificaciones=$('#txt_tutor_Modificaciones').val();
+
 
 	cadena= "txt_Num_Control_Modificaciones=" + txt_Num_Control_Modificaciones +
 			"&txt_Nombre_Modificaciones=" + txt_Nombre_Modificaciones + 
@@ -62,7 +66,8 @@ function actualizaDatos(){
 			"&txt_Apellido_Materno_Modificaciones=" + txt_Apellido_Materno_Modificaciones +
 			"&txt_Edad_Modificaciones=" + txt_Edad_Modificaciones +
 			"&txt_Semestre_Modificaciones=" + txt_Semestre_Modificaciones +
-			"&txt_Carrera_Modificaciones=" + txt_Carrera_Modificaciones;
+			"&txt_Carrera_Modificaciones=" + txt_Carrera_Modificaciones+
+			"&txt_tutor_Modificaciones=" + txt_tutor_Modificaciones;
 
 	$.ajax({
 		type:"POST",

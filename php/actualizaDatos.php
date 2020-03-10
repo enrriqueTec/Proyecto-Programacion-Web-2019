@@ -13,8 +13,18 @@ if($_SESSION["autenticado"]!=1){
 	$e=$_POST['txt_Edad_Modificaciones'];
 	$s=$_POST['txt_Semestre_Modificaciones'];
 	$c=$_POST['txt_Carrera_Modificaciones'];
+	$t=$_POST['txt_tutor_Modificaciones'];
 
-	$sql="UPDATE alumnos set Nombre='$n', primerAp='$ap', segundoAp='$am', edad='$e', semestre='$s', carrera='$c' where numControl='$nc'";
-	echo $result=mysqli_query($conexion,$sql);
+	$sql="UPDATE alumnos set Nombre=?, primerAp=?, segundoAp=?, edad=?, semestre=?, carrera=? clave_tutor=? where numControl=?";
+	$stm=$conexion->prepare($sql);
+          $stm->bindValue(1,$n);	
+          $stm->bindValue(2,$ap);
+          $stm->bindValue(3,$am);
+          $stm->bindValue(4,$e);
+          $stm->bindValue(5,$s);
+          $stm->bindValue(6,$c);
+          $stm->bindValue(7,$t);
+          $stm->bindValue(8,$nc);					
+	echo $result=$stm->execute();
 
  ?>

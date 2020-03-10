@@ -3,7 +3,7 @@
 	$conexion=conexion();
 
 	$sql="SELECT * from tutores";
-				$result=mysqli_query($conexion,$sql);
+				$result=$conexion->query($sql);
 
  ?>
 <br><br>
@@ -14,13 +14,15 @@
 		<select id="buscadorvivo" class="form-control input-sm">
 			<option value="0">Mostrar Todos</option>
 			<?php
-				while($ver=mysqli_fetch_row($result)): 
+				foreach ($result as $ver):
+				
+				 
 			 ?>
 				<option value="<?php echo $ver[0] ?>">
-					<?php echo $ver[0]." ".$ver[1]." ".$ver[2]." ".$ver[3]." ".$ver[4]." ".$ver[5] ?>
+					<?php echo $ver[0]." ".$ver[1]." ".$ver[2]." ".$ver[3]." ".$ver[4]." ".$ver[5]?>
 				</option>
 
-			<?php endwhile; ?>
+			<?php endforeach; ?>
 
 		</select>
 	</div>

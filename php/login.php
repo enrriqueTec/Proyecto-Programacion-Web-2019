@@ -1,20 +1,24 @@
 <?php
 session_start();
-if($_SESSION["autenticado"]!=1){
-     header("Location: login.php");
-
- }
 if(!empty($_POST)){
-  
-	if(isset($_POST["username"]) &&isset($_POST["password"])){
-		if($_POST["username"]!=""&&$_POST["password"]!=""){
+  $user=$_POST["username"];
+  $password=$_POST["password"];
+	if(isset($user) &&isset($password)){
+		if($user!=""&&$password!=""){
 			include "conexion.php";
 			$conexion=conexion();
 			$user_id=null;
-			$sql1="SELECT * FROM login where NombreUsuario=\"$_POST[username]\"  and Contrasena=\"$_POST[password]\" ";
-			$query =mysqli_query($conexion,$sql1);
+			$sql1="SELECT * FROM login where NombreUsuario=?  and Contrasena=? ";
+			$stm=$conexion->prepare($sql1);
+
+		
+          $stm->bindValue(1,$user);	
+          $stm->bindValue(2,$password);
+          					
+	     echo $result=$stm->execute();
             
-			while ($ver=mysqli_fetch_row($query)) {
+
+			while ($ver=$stm->fetch()) {
 				$user_id=$ver[0];
                               
 				break;
@@ -22,10 +26,8 @@ if(!empty($_POST)){
 			}
             //var_dump($sql1);
 			if($user_id==null){
-                $_SESSION["autenticado"]=0;
 				print "<script>alert(\"Acceso invalido.\"); window.location='../login.php';</script>";
 			}else{
-				session_start();
 				$_SESSION["autenticado"]=1;
 				print "<script>window.location='../Altas.php';</script>";				
 			}
